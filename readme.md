@@ -12,4 +12,4 @@ This is a template repository for bootstrapping a Raylib project quickly.
 
 1. Clone this repository using:
    ```bash
-   git clone --recurse-submodules https://github.com/oasdflkjo/raylib-template.git
+   git clone --recurse-submodules https://github.com/your-username/raylib-template.git my-new-project
