@@ -7,6 +7,9 @@ project(raylib_project VERSION 1.0)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED True)
 
+# Add the Raylib subdirectory
+add_subdirectory(raylib)  # This builds Raylib from source
+
 # Set the executable name
 set(EXECUTABLE_NAME raylib_project)
 
@@ -16,13 +19,8 @@ set(SRC_DIR src)
 # Add the executable
 add_executable(${EXECUTABLE_NAME} ${SRC_DIR}/main.c)
 
-# Specify where to find the Raylib headers and libraries
-include_directories(raylib/src)
-link_directories(raylib/build)
+# Include Raylib headers
+target_include_directories(${EXECUTABLE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/raylib/src)
 
-# Link the Raylib library and additional required libraries
-if (WIN32)
-    target_link_libraries(${EXECUTABLE_NAME} raylib m pthread winmm gdi32)
-else()
-    target_link_libraries(${EXECUTABLE_NAME} raylib m pthread dl rt X11)
-endif()
+# Link Raylib and other system libraries to your executable
+target_link_libraries(${EXECUTABLE_NAME} PRIVATE raylib)
